@@ -1,0 +1,41 @@
+body{
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+.slideLeft{
+    animation: scrollLeft 10s infinite linear;
+}
+.slideRight{
+    animation: scrollRight 10s infinite linear;
+}
+
+@keyframes scrollLeft {
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes scrollRight {
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+
+.iconMove{
+    animation: iconMove 3s infinite linear;
+}
+
+@keyframes iconMove {
+    0%{
+        transform: translateY(30%);
+    }
+    100%{
+        transform: translateY(-10%);
+    }
+}
