@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import { Toaster } from "sonner";
 import Resume from './components/Resume';
+import News from './components/News';
 
 const router = createBrowserRouter( 
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login/>} />
       <Route path='/dashboard' element={<Home/>} />
       <Route path='/resume' element={<Resume/>} />
+      <Route path='/news' element={<News/>} />
     </Route>
   )
 );

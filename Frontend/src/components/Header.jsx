@@ -15,11 +15,11 @@ function Header() {
           <Button className="bg-white text-black font-medium text-sm p-5 rounded-full cursor-pointer hover:bg-white/90"><i className="ri-speak-ai-line text-2xl"></i>Start Interview</Button>
           </Link>
           <i className="ri-bard-line text-2xl"></i>
-          <Button className="text-white border-2 border-gray-600 font-medium text-sm p-5 rounded-full cursor-pointer hover:bg-black"><i className="ri-graduation-cap-line text-2xl"></i>Learning</Button>
+          <Link to='https://drona-ohmm.onrender.com/'><Button className="text-white border-2 border-gray-600 font-medium text-sm p-5 rounded-full cursor-pointer hover:bg-black"><i className="ri-graduation-cap-line text-2xl"></i>Learning</Button></Link>
           <i className="ri-bard-line text-2xl"></i>
           <Link to='/resume'><Button className="bg-white text-black font-medium text-sm p-5 rounded-full cursor-pointer hover:bg-white/90"><i className="ri-booklet-line text-2xl"></i>Create Resume</Button></Link>
           <i className="ri-bard-line text-2xl"></i>
-          <Button className="text-white border-2 border-gray-600 font-medium text-sm p-5 rounded-full cursor-pointer hover:bg-black"><i className="ri-newspaper-line text-2xl"></i>News</Button>
+          <Link to='/news'><Button className="text-white border-2 border-gray-600 font-medium text-sm p-5 rounded-full cursor-pointer hover:bg-black"><i className="ri-newspaper-line text-2xl"></i>News</Button></Link>
         </div>
         <div>
           <Dialog>
