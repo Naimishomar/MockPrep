@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
     const headingText = ["Learn smarter with AI","Start giving interviews","Get industry news","Build your resume","Get consult with mentors"];
@@ -95,7 +96,7 @@ function Dashboard() {
                 <li className='text-xl hover:text-white/80 blur-sm hover:blur-none mt-2'>📝 Live Transcripts: Follow and review conversations with automated transcription.</li>
                 <li className='text-xl hover:text-white/80 blur-sm hover:blur-none mt-2'>📈 Performance Feedback: Detailed AI-generated feedback helps you make informed, data-driven decisions.</li>
             </ul>
-            <Button className="w-full h-12 mt-3 bg-blue-400">Start interview</Button>
+            <Link to='/dashboard'><Button className="w-full h-12 mt-3 bg-blue-400">Start interview</Button></Link>
         </div>
     </div>
     <hr className='border-white/10' />
@@ -132,7 +133,7 @@ function Dashboard() {
                 <li className='text-xl hover:text-white/80 blur-sm hover:blur-none mt-2'>🔍 Real-Time Feedback
                 :Get AI-powered tips to improve clarity, impact, and keyword usage.</li>
             </ul>
-            <Button className="w-full h-12 mt-3 bg-red-400">Create your resume</Button>
+            <Link to='/resume'><Button className="w-full h-12 mt-3 bg-red-400">Create your resume</Button></Link>
         </div>
     </div>
     <hr className='border-white/10' />

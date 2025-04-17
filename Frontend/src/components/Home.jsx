@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom'
 function Home() {
   const [click, setclick] = useState(false)
   // const [selectedOptions, setSelectedOptions] = useState([]);
-  const [resume, setresume] = useState('')
-  const [experience, setexperience] = useState([]);
-  const [duration, setduration] = useState('')
-  const [skill, setskill] = useState([])
+  const [resume, setresume] = useState([])
+  const [experience, setexperience] = useState("Fresher");
+  const [duration, setduration] = useState("5")
+  const [skill, setskill] = useState('Frontend Developer')
+  const [showInterview, setShowInterview] = useState(true);
 
 
   // const handleChange = (e) => {
@@ -51,8 +52,14 @@ function Home() {
 
   return (
     <div className='mt-20 h-screen w-full bg-black/70 flex justify-center '>
-      {(click)?(
-        <Interview/>
+      {(click && showInterview)?(
+        <Interview
+        skill={skill}
+    experience={experience}
+    resume={resume}
+    duration={duration}
+    onEnd={() => setShowInterview(false)}
+        />
       ):(
         <>
         <div>
@@ -94,10 +101,10 @@ function Home() {
                   <div>
                     <label>Interview Duration:</label>
                     <select value={duration} onChange={handleDuration} className='w-full bg-white/10 h-10 rounded px-2 mt-1 focus:outline-none'>
-                      <option value="5 min">5 min</option>
-                      <option value="10 min" disabled>10 min</option>
-                      <option value="15 min" disabled>15 min</option>
-                      <option value="30 min" disabled>30 min</option>
+                      <option value="5">5 min</option>
+                      <option value="10" disabled>10 min</option>
+                      <option value="15" disabled>15 min</option>
+                      <option value="30" disabled>30 min</option>
                     </select>
                   </div>
                   <Button className="bg-blue-400 py-5" onClick={start}>Start Now<i class="ri-arrow-right-line text-2xl"></i></Button>
