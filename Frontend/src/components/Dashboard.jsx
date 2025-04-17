@@ -79,7 +79,7 @@ function Dashboard() {
             </div>
         </div>
         </div>
-        <i class="ri-mouse-line absolute text-5xl left-[50%] bottom-25 translate-[-50%] cursor-pointer iconMove"></i>
+        <i class="ri-mouse-line absolute text-5xl left-[50%] bottom-20 translate-[-50%] cursor-pointer iconMove"></i>
     </div>
     <hr className='border-white/10' />
     <div className='h-screen w-full bg-black/80 flex justify-between'>

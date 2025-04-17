@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import FileUploadBox from './FileUpload'
 import { Link } from 'react-router-dom'
 import {Dialog,DialogContent,DialogDescription,DialogHeader,DialogTitle,DialogTrigger,} from "@/components/ui/dialog"
 import { Button } from './ui/button'
@@ -28,7 +27,21 @@ const steps = [
   ];
 
 function Resume() {
-    const [file, setfile] = useState(false)
+    const [selectInput, setselectInput] = useState('hardcoded');
+    const [phoneNumber, setphoneNumber] = useState('')
+    const [email, setemail] = useState('')
+    const [github, setgithub] = useState('')
+    const [college, setcollege] = useState('')
+    const [year, setyear] = useState('')
+    const [acheivements, setacheivements] = useState('')
+
+    const scrollToTop = () => {
+        window.scrollTo({
+           top: 0,
+           behavior: "smooth",
+        });
+    };
+
   return (
     <>
     <div className='mt-20 w-full h-screen p-7 flex'>
@@ -37,16 +50,67 @@ function Resume() {
         <div className='w-[65%]'>
             <h1 className='text-6xl font-bold text-pink-400'>Build Your Dream Resume <br />in Minutes with AI</h1>
             <p className='text-xl font-semibold'>Say Goodbye to Templates — Let AI Build Your Resume</p>
-            {(file)?(
-                <>
-                <FileUploadBox/>
-                </>
-            ):(
-                <>
-                <p className='mt-10 text-2xl'>Land your next job with one of the best AI resume builders online. <br /> Work from your computer or phone with dozens of recruiter- <br />approved templates and add ready-to-use skills and phrases <br /> in one click. Millions have trusted our resume maker — and <br /><span className='text-4xl text-yellow-300 font-bold'>it’s free to use!</span></p>
-                <button className='mt-4 bg-blue-500 px-7 py-3 rounded-sm w-70 justify-center flex gap-2 font-bold items-center text-xl cursor-pointer hover:bg-blue-700' onClick={()=>setfile(true)}>Create my resume<i className="ri-survey-line text-2xl"></i></button>
-                </>
-            )}
+            <p className='mt-10 text-2xl'>Land your next job with one of the best AI resume builders online. <br /> Work from your computer or phone with dozens of recruiter- <br />approved templates and add ready-to-use skills and phrases <br /> in one click. Millions have trusted our resume maker — and <br /><span className='text-4xl text-yellow-300 font-bold'>it’s free to use!</span></p>
+            <Dialog>
+              <DialogTrigger><button className='mt-4 bg-blue-500 px-7 py-3 rounded-sm w-70 justify-center flex gap-2 font-bold items-center text-xl cursor-pointer hover:bg-blue-700'>Create my resume<i className="ri-survey-line text-2xl"></i></button></DialogTrigger>
+              <DialogContent className="bg-gradient-to-bl from-[#1a1a1a] via-[#2a2a2a] to-[#000000] shadow-2xl text-white border-none overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-4">
+                    <img className='w-13 invert' src="/image-removebg-preview.png" alt="logo" />
+                    <h1 className='text-2xl font-bold'>MockPrep</h1>
+                  </DialogTitle>
+                  <DialogDescription className="flex flex-col space-y-3 mt-3">
+                      <div className='flex justify-evenly items-center gap-10'>
+                        <button className='text-xl text-white bg-blue-500 hover:text-blue-500 hover:bg-white px-16 py-2 rounded font-semibold w-full' onClick={()=> setselectInput('hardcoded')}>Hello</button>
+                        <button className='text-xl text-white bg-blue-500 hover:text-blue-500 hover:bg-white px-16 py-2 rounded font-semibold w-full' onClick={()=> setselectInput('brief')}>Guys</button>
+                      </div>
+                      <div>{(selectInput === 'hardcoded')?(
+                        <>
+                        <div>
+                            <h1 className='text-2xl font-bold text-center mt-1 bg-gradient-to-bl from-[#5c5c5c] via-[#7e7e7e] to-[#0b0b0b] bg-clip-text text-transparent whitespace-nowrap'>Enter your details</h1>
+                            <div className='flex gap-4 items-center'>
+                                <div className='mt-2 w-[35%]'>
+                                    <label>Phone Number:</label>
+                                    <input type="text" placeholder='Phone number' value={phoneNumber} onChange={(e)=> setphoneNumber(e.target.value)} className='w-full border p-2 placeholder:text-gray-500 text-gray-200 rounded outline-none '/>
+                                </div>
+                                <div className='mt-2 flex-1'>
+                                    <label>Email:</label>
+                                    <input type="text" placeholder='Your email' value={email} onChange={(e)=> setemail(e.target.value)} className='w-full border p-2 placeholder:text-gray-500 text-gray-200 rounded outline-none '/>
+                                </div>
+                            </div>
+                            <div className='mt-2'>
+                                <label>Github ID:</label>
+                                <input type="text" placeholder='Your github Id' value={github} onChange={(e)=> setgithub(e.target.value)} className='w-full border p-2 placeholder:text-gray-500 text-gray-200 rounded outline-none '/>
+                                <label>{(github.length<=0)?(<p>Required</p>): (<></>)}</label>
+                            </div>
+                            <div className='flex gap-4 items-center'>
+                                <div className='mt-2 w-[70%]'>
+                                    <label>Education:</label>
+                                    <input type="text" placeholder='College name' value={college} onChange={(e)=> setcollege(e.target.value)} className='w-full border p-2 placeholder:text-gray-500 text-gray-200 rounded outline-none '/>
+                                </div>
+                                <div className='mt-2 flex-1'>
+                                    <label>Passing Year:</label>
+                                    <input type="text" placeholder='Passing year' value={year} onChange={(e)=> setyear(e.target.value)} className='w-full border p-2 placeholder:text-gray-500 text-gray-200 rounded outline-none '/>
+                                </div>
+                            </div>
+                            <div className='mt-2'>
+                                <label>Acheivements:</label>
+                                <input type="text" placeholder='Acheivements' value={acheivements} onChange={(e)=> setacheivements(e.target.value)} className='w-full border p-2 placeholder:text-gray-500 text-gray-200 rounded outline-none'/>
+                                <label>{(acheivements.length>100)?(<></>):(<p>{100-acheivements.length} words left</p>)}</label>
+                            </div>
+                            <button className='w-full py-2 bg-blue-500 text-white cursor-pointer mt-2 rounded flex items-center justify-center hover:bg-blue-600'>Get Resume<i className="ri-arrow-right-line text-2xl"></i></button>
+                        </div>
+                        </>
+                      ):(
+                        <>
+                        <textarea placeholder='Give a brief discussion about yourself and your projects' className='w-full min-h-[150px] border p-2 placeholder:text-gray-500 text-gray-200 rounded outline-none resize-none'/>
+                        <button className='w-full py-2 bg-blue-500 text-white cursor-pointer mt-2 rounded flex items-center justify-center hover:bg-blue-600'>Get Resume<i className="ri-arrow-right-line text-2xl"></i></button>
+                        </>
+                      )}</div>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
         </div>
         <div className='flex-1'>
             <img src="/resume.avif" className='object-cover' />
@@ -63,37 +127,7 @@ function Resume() {
             </div>
         ))}
         </div>
-        <Dialog>
-              <DialogTrigger><i className="ri-menu-2-line text-2xl cursor-pointer bg-white/10 p-3 rounded-full"></i></DialogTrigger>
-              <DialogContent className="bg-gradient-to-bl from-[#1a1a1a] via-[#2a2a2a] to-[#000000] shadow-2xl text-white border-none">
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-4">
-                    <img className='w-13 invert' src="/image-removebg-preview.png" alt="logo" />
-                    <h1 className='text-2xl font-bold'>MockPrep</h1>
-                  </DialogTitle>
-                  <DialogDescription className="flex flex-col space-y-3 mt-5">
-                      <Button className="bg-white/10 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse"><Link to="/login">Login</Link></Button>
-                    <Button className="bg-white/10 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse">Account</Button>
-                    <Button className="bg-white/10 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse">History</Button>
-                    <Button className="bg-blue-400 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse">Premium Plan</Button>
-                    <div className='mt-3 justify-center flex gap-4'>
-                      <Link className='hover:text-white/60'>Terms</Link>
-                      <i class="ri-bubble-chart-line"></i>
-                      <Link className='hover:text-white/60'>Contact</Link>
-                      <i class="ri-bubble-chart-line"></i>
-                      <Link className='hover:text-white/60'>About</Link>
-                    </div>
-                    <div className='flex justify-center items-center mt-2 gap-8'>
-                      <Link><i class="ri-twitter-x-fill text-2xl hover:text-blue-500"></i></Link>
-                      <Link><i class="ri-linkedin-fill text-2xl hover:text-blue-600"></i></Link>
-                      <Link><i class="ri-instagram-line text-2xl hover:text-pink-500"></i></Link>
-                    </div>
-                    <p className='text-center mt-4 hover:text-purple-500'>Made by Artificial Engineers</p>
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-          </Dialog>
-        <Link to='/resume'><button className="mt-16 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-8 py-3 rounded-full shadow-lg cursor-pointer flex items-center gap-3">Create my resume<i className="ri-survey-line text-2xl"></i></button></Link>
+        <button onClick={scrollToTop} className="mt-16 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-8 py-3 rounded-full shadow-lg cursor-pointer flex items-center gap-3">Create my resume<i className="ri-survey-line text-2xl"></i></button>
         </div>
     </>
   )
