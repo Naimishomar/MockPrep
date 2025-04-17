@@ -6,20 +6,34 @@ import { Link } from 'react-router-dom'
 
 function Home() {
   const [click, setclick] = useState(false)
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  // const [selectedOptions, setSelectedOptions] = useState([]);
+  const [resume, setresume] = useState('')
   const [experience, setexperience] = useState([]);
   const [duration, setduration] = useState('')
+  const [skill, setskill] = useState([])
 
 
-  const handleChange = (e) => {
+  // const handleChange = (e) => {
+  //   const values = Array.from(e.target.selectedOptions, option => option.value);
+  //   setSelectedOptions(values);
+  //   console.log(values);
+  // };
+
+  const handleSkill = (e) => {
     const values = Array.from(e.target.selectedOptions, option => option.value);
-    setSelectedOptions(values);
+    setskill(values);
     console.log(values);
   };
 
   const handleExperience = (e) => {
     const values = Array.from(e.target.selectedOptions, option => option.value);
     setexperience(values);
+    console.log(values);
+  };
+
+  const handleResume = (e) => {
+    const values = Array.from(e.target.selectedOptions, option => option.value);
+    setresume(values);
     console.log(values);
   };
 
@@ -53,7 +67,7 @@ function Home() {
                   <DialogDescription className="flex flex-col space-y-3 mt-5">
                   <div>
                     <label>Choose your skill:</label>
-                    <select value={experience} onChange={handleChange} className='w-full bg-white/10 h-10 rounded px-2 mt-1 focus:outline-none'>
+                    <select value={skill} onChange={handleSkill} className='w-full bg-white/10 h-10 rounded px-2 mt-1 focus:outline-none'>
                       <option value="Frontend Developer">Frontend Developer</option>
                       <option value="Backend Developer">Backend Developer</option>
                       <option value="Fullstack Web Developer">Fullstack Web Developer</option>
@@ -66,7 +80,7 @@ function Home() {
                   </div>
                   <div>
                     <label>Experience:</label>
-                    <select value={selectedOptions} onChange={handleExperience} className='w-full bg-white/10 h-10 rounded px-2 mt-1 focus:outline-none'>
+                    <select value={experience} onChange={handleExperience} className='w-full bg-white/10 h-10 rounded px-2 mt-1 focus:outline-none'>
                       <option value="Fresher">Fresher</option>
                       <option value="1 year">1 year</option>
                       <option value="2 year">2 year</option>
@@ -75,7 +89,7 @@ function Home() {
                   </div>
                   <div>
                     <label>Upload Resume:</label>
-                    <input type="file" className='w-full bg-white/10 h-10 rounded p-2 mt-1 focus:outline-none'/>
+                    <input type="file" value={resume} onChange={handleResume} className='w-full bg-white/10 h-10 rounded p-2 mt-1 focus:outline-none'/>
                   </div>
                   <div>
                     <label>Interview Duration:</label>
