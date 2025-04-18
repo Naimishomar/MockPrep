@@ -63,8 +63,19 @@ function Home() {
       ):(
         <>
         <div>
+          <i class="ri-bar-chart-box-ai-line text-5xl absolute rotate-12 text-blue-400 top-45 left-30 iconMove"></i>
+          <i class="ri-presentation-fill text-5xl absolute rotate-12 text-pink-400 top-25 right-30 iconMove"></i>
+          <i class="ri-chat-voice-ai-fill text-5xl absolute rotate-12 text-yellow-400 bottom-25 right-60 iconMove"></i>
+          <div className='bg-white/10 p-4 my-2 rounded-xl w-full text-white/80'>
+            <h1 className='text-3xl font-semibold text-center text-white'>General Instructions:</h1>
+            <p className='my-2'><span className='font-semibold text-red-500'>1.Check Internet & Devices:</span> <br />Ensure your internet connection is stable and your mic, camera, and speakers are working.</p>
+            <p><span className='font-semibold text-red-500'>2.Mute When Not Speaking</span> <br />Keep your microphone muted unless you're speaking to avoid background noise.</p>
+            <p className='my-2'><span className='font-semibold text-red-500'>3.Dress Appropriately:</span> <br />Maintain a professional or decent appearance, especially if your camera is on.</p>
+            <p><span className='font-semibold text-red-500'>4.Be in a Quiet Environment:</span> <br />Choose a quiet and well-lit place to avoid distractions during the session.</p>
+            <p className='my-2'><span className='font-semibold text-red-500'>6.Be Respectful:</span> <br />Allow others to speak, avoid interrupting, and be polite during discussions.</p>
+          </div>
           <Dialog>
-              <DialogTrigger className='px-5 py-3 bg-blue-500 rounded text-white flex items-center justify-center gap-2 text-xl cursor-pointer'>Click to start<i className="ri-add-line text-2xl"></i></DialogTrigger>
+              <DialogTrigger className='px-5 py-3 bg-blue-500 rounded text-white flex items-center mx-auto gap-2 text-xl cursor-pointer w-full justify-center hover:bg-blue-600'>Click to start<i className="ri-add-line text-2xl"></i></DialogTrigger>
               <DialogContent className="bg-gradient-to-bl from-[#1a1a1a] via-[#2a2a2a] to-[#000000] shadow-2xl text-white border-none">
                 <DialogHeader>
                   <DialogTitle className="flex items-center gap-4">
