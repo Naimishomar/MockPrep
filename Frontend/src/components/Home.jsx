@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 function Home() {
   const [click, setclick] = useState(false)
-  // const [selectedOptions, setSelectedOptions] = useState([]);
   const [resume, setresume] = useState([])
   const [experience, setexperience] = useState("Fresher");
   const [duration, setduration] = useState("5")
@@ -75,7 +74,7 @@ function Home() {
             <p className='my-2'><span className='font-semibold text-red-500'>6.Be Respectful:</span> <br />Allow others to speak, avoid interrupting, and be polite during discussions.</p>
           </div>
           <Dialog>
-              <DialogTrigger className='px-5 py-3 bg-blue-500 rounded text-white flex items-center mx-auto gap-2 text-xl cursor-pointer w-full justify-center hover:bg-blue-600'>Click to start<i className="ri-add-line text-2xl"></i></DialogTrigger>
+              <DialogTrigger className='px-5 py-3 bg-blue-500 rounded text-white flex items-center mx-auto gap-2 text-xl cursor-pointer w-full justify-center hover:bg-blue-600 font-semibold'>Click to start<i className="ri-add-line text-2xl"></i></DialogTrigger>
               <DialogContent className="bg-gradient-to-bl from-[#1a1a1a] via-[#2a2a2a] to-[#000000] shadow-2xl text-white border-none">
                 <DialogHeader>
                   <DialogTitle className="flex items-center gap-4">
@@ -118,7 +117,7 @@ function Home() {
                       <option value="30" disabled>30 min</option>
                     </select>
                   </div>
-                  <Button className="bg-blue-400 py-5" onClick={start}>Start Now<i class="ri-arrow-right-line text-2xl"></i></Button>
+                  <Button className="bg-blue-500 py-5 hover:bg-blue-600 cursor-pointer" onClick={start}>Start Now<i class="ri-arrow-right-line text-2xl"></i></Button>
                   <div className='flex justify-center items-center mt-2 gap-8'>
                     <Link><i class="ri-twitter-x-fill text-2xl hover:text-blue-500"></i></Link>
                     <Link><i class="ri-linkedin-fill text-2xl hover:text-blue-600"></i></Link>

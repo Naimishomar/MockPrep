@@ -18,6 +18,7 @@ function Interview({ skill, experience, resume, duration }) {
   const [questionCount, setQuestionCount] = useState(0);
   const [conversationHistory, setConversationHistory] = useState([]);
   const [confidence, setConfidence] = useState(0);
+  const hasStartedRef = useRef(false);
 
   const navigate = useNavigate();
 
@@ -169,11 +170,11 @@ function Interview({ skill, experience, resume, duration }) {
     const id = "session-" + Date.now();
     setSessionId(id);
     setQuestionCount(0);
-
+    
     const initialHistory = [
       {
         role: "user",
-        text: `You are a friendly and professional Interviewer (Name Yourself Randomly) Interviewing a student for ${skill} role. they have ${experience} years of experience. ask a mix of hard and simple problem one by one ask practical yet unique question. Keep the interview concise and on-topic. dont ask long question`,
+        text: `You are a friendly and professional Interviewer (Name Yourself Randomly) Interviewing a student for ${skill} role. they have ${experience} years of experience. ask a mix of hard and simple problem one by one ask practical yet unique question. Keep the interview concise and on-topic. dont ask long question and try to give feedback and tell some intresthing thing regarding to user answer and related to asked question`,
       },
     ];
     setConversationHistory(initialHistory);
@@ -189,6 +190,17 @@ function Interview({ skill, experience, resume, duration }) {
     await speakTextNormal(welcome);
     recordUserAnswer(initialHistory.concat({ role: "model", text: welcome }));
   };
+
+
+  useEffect(() => {
+    if (!hasStartedRef.current) {
+      hasStartedRef.current = true;
+      if (!sessionId) {
+        startInterview();
+      }
+    }
+  }, []);
+  
 
   const recordUserAnswer = (historyOverride = null) => {
     const recognition =
@@ -263,59 +275,25 @@ function Interview({ skill, experience, resume, duration }) {
   return (
     <>
       <div className="flex-1 bg-white/10 relative rounded-xl">
-      Confidence :{confidence}
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          className={`border rounded-xl object-cover scale-x-[-1] ${
-            changeMode
-              ? "w-[25%] h-[25%] absolute right-0 bottom-0 m-1"
-              : "w-full h-full"
-          }`}
-        />
-        <div
-          className={`bg-black rounded-xl ${
-            changeMode
-              ? "w-full h-full"
-              : "absolute right-0 bottom-0 w-[25%] h-[25%] m-1"
-          }`}
-        ></div>
+        <div className={`absolute z-20 p-2 text-xl font-semibold ${(confidence<50)?"text-red-500":"text-green-400"}`}>Confidence: {confidence}</div>
+        <video ref={videoRef} autoPlay playsInline className={`border rounded-xl object-cover scale-x-[-1] ${
+            changeMode ? "w-[25%] h-[25%] absolute right-0 bottom-0 m-1": "w-full h-full"}`}/>
+        <div className={`bg-black rounded-xl ${changeMode? "w-full h-full": "absolute right-0 bottom-0 w-[25%] h-[25%] m-1"}`}></div>
         <div className="w-full h-14 absolute bottom-0 mb-5 flex justify-center items-center gap-10">
-          <i
-            className="ri-camera-switch-fill text-2xl bg-white/15 p-4 rounded-full cursor-pointer"
-            onClick={() => setchangeMode(!changeMode)}
+          <i className="ri-camera-switch-fill text-2xl bg-white/15 p-4 rounded-full cursor-pointer" onClick={() => setchangeMode(!changeMode)}></i>
+          <i className="ri-mic-off-fill text-2xl bg-white/15 p-4 rounded-full cursor-pointer" onClick={toggleMic}></i>
+          <i className="ri-phone-fill text-2xl bg-red-500 p-4 rounded-full cursor-pointer" onClick={stopCamera}
           ></i>
-          <i
-            className="ri-mic-off-fill text-2xl bg-white/15 p-4 rounded-full cursor-pointer"
-            onClick={toggleMic}
-          ></i>
-          <i
-            className="ri-phone-fill text-2xl bg-red-500 p-4 rounded-full cursor-pointer"
-            onClick={stopCamera}
-          ></i>
-          <button
-            onClick={startInterview}
-            className="text-sm bg-green-500 text-white px-4 py-2 rounded-full"
-            disabled={sessionId !== null}
-          >
-            Start Interview
-          </button>
+          <button onClick={startInterview} className="text-sm bg-green-500 text-white px-4 py-2 rounded-full"
+          disabled={sessionId !== null}>Start Interview</button>
         </div>
       </div>
 
       <div className="mt-60">
-        <i
-          className="ri-contract-left-right-line text-center text-2xl bg-white/20 p-2 rounded-full mx-3"
-          onClick={() => setcloseChat(!closeChat)}
-        ></i>
+        <i className="ri-contract-left-right-line text-center text-2xl bg-white/20 p-2 rounded-full mx-3" onClick={() => setcloseChat(!closeChat)}></i>
       </div>
 
-      <div
-        className={`bg-white overflow-auto rounded-xl transition-all duration-300 ease-in-out ${
-          closeChat ? "w-0 absolute right-0" : "w-[30%] max-h-[80vh] p-4"
-        }`}
-      >
+      <div className={`bg-white overflow-auto rounded-xl transition-all duration-300 ease-in-out ${closeChat ? "w-0 absolute right-0" : "w-[30%] h-screen p-4"}`}>
         <h2 className="font-bold mb-2">Interview Log</h2>
         <pre className="whitespace-pre-wrap text-sm text-black">
           {logText}</pre>

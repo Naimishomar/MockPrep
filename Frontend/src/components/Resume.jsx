@@ -53,7 +53,7 @@ function Resume() {
             <p className='mt-10 text-2xl'>Land your next job with one of the best AI resume builders online. <br /> Work from your computer or phone with dozens of recruiter- <br />approved templates and add ready-to-use skills and phrases <br /> in one click. Millions have trusted our resume maker — and <br /><span className='text-4xl text-yellow-300 font-bold'>it’s free to use!</span></p>
             <Dialog>
               <DialogTrigger><button className='mt-4 bg-blue-500 px-7 py-3 rounded-sm w-70 justify-center flex gap-2 font-bold items-center text-xl cursor-pointer hover:bg-blue-700'>Create my resume<i className="ri-survey-line text-2xl"></i></button></DialogTrigger>
-              <DialogContent className="bg-gradient-to-bl from-[#1a1a1a] via-[#2a2a2a] to-[#000000] shadow-2xl text-white border-none overflow-y-auto">
+              <DialogContent className="bg-gradient-to-bl from-[#1a1a1a] via-[#2a2a2a] to-[#000000] shadow-2xl text-white border-none overflow-y-hidden h-screen">
                 <DialogHeader>
                   <DialogTitle className="flex items-center gap-4">
                     <img className='w-13 invert' src="/image-removebg-preview.png" alt="logo" />
@@ -102,10 +102,10 @@ function Resume() {
                         </div>
                         </>
                       ):(
-                        <>
+                        <div>
                         <textarea placeholder='Give a brief discussion about yourself and your projects' className='w-full min-h-[150px] border p-2 placeholder:text-gray-500 text-gray-200 rounded outline-none resize-none'/>
                         <button className='w-full py-2 bg-blue-500 text-white cursor-pointer mt-2 rounded flex items-center justify-center hover:bg-blue-600'>Get Resume<i className="ri-arrow-right-line text-2xl"></i></button>
-                        </>
+                        </div>
                       )}</div>
                   </DialogDescription>
                 </DialogHeader>
