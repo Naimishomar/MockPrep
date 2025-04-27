@@ -3,6 +3,7 @@ import {Button} from './ui/button'
 import {Dialog,DialogContent,DialogDescription,DialogHeader,DialogTitle,DialogTrigger,} from "@/components/ui/dialog"
 import { Link } from 'react-router-dom'
 import { useUser } from "../context/UserContext.jsx";
+import { motion } from 'framer-motion';
 
 function Header() {
   const [username, setusername] = useState(null)
@@ -16,7 +17,7 @@ function Header() {
   }, []);
 
   return (
-    <div className='w-full h-20 bg-black/90 text-white flex items-center justify-between px-8 fixed z-30'>
+    <motion.div className='w-full h-20 bg-black/90 text-white flex items-center justify-between px-8 fixed z-30' initial={{ opacity: 0, x: 200 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1, ease: "easeOut" }} viewport={{ once: false, amount: 0.2 }}>
         <div className='w-12'>
             <Link to="/"><img className='invert' src="/image-removebg-preview.png" alt="logo" /></Link>
         </div>
@@ -64,7 +65,7 @@ function Header() {
               </DialogContent>
           </Dialog>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

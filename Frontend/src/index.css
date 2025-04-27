@@ -216,3 +216,19 @@ nav input{
   bottom: 0;
   margin-bottom: 10px;
 }
+
+/* @keyframes animate {
+  from{
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.animate{
+  animation: animate linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+} */

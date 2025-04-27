@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 function Layout() {
   return (
-    <div className="bg-black/90 text-white overflow-x-hidden">
+    <div className="bg-black text-white overflow-x-hidden">
         <Header/>
         <Outlet/>
         <Footer/>
