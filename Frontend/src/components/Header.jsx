@@ -1,9 +1,19 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import {Button} from './ui/button'
 import {Dialog,DialogContent,DialogDescription,DialogHeader,DialogTitle,DialogTrigger,} from "@/components/ui/dialog"
 import { Link } from 'react-router-dom'
+import { useUser } from "../context/UserContext.jsx";
 
 function Header() {
+  const [username, setusername] = useState(null)
+  const { user, logout } = useUser();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setusername(user);
+    }
+  }, []);
 
   return (
     <div className='w-full h-20 bg-black/90 text-white flex items-center justify-between px-8 fixed z-30'>
@@ -31,16 +41,17 @@ function Header() {
                     <h1 className='text-2xl font-bold'>MockPrep</h1>
                   </DialogTitle>
                   <DialogDescription className="flex flex-col space-y-3 mt-5">
-                      <Button className="bg-white/10 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse"><Link to="/login">Login</Link></Button>
+                      {(username)?(
+                        <Button className="bg-white/10 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse">{user}</Button>):(<Button className="bg-white/10 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse"><Link to="/login">Login</Link></Button>)}
                     <Button className="bg-white/10 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse">Account</Button>
-                    <Button className="bg-white/10 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse">History</Button>
+                    <Button className="bg-white/10 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse">About Us</Button>
                     <Button className="bg-blue-400 py-6 rounded-full hover:bg-white hover:text-black cursor-pointer hover:animate-pulse">Premium Plan</Button>
                     <div className='mt-3 justify-center flex gap-4'>
-                      <Link className='hover:text-white/60'>Terms</Link>
+                      <i class="ri-bubble-chart-line"></i>
+                      <Link className='hover:text-white/60'>Terms & Conditions</Link>
                       <i class="ri-bubble-chart-line"></i>
                       <Link className='hover:text-white/60'>Contact</Link>
                       <i class="ri-bubble-chart-line"></i>
-                      <Link className='hover:text-white/60'>About</Link>
                     </div>
                     <div className='flex justify-center items-center mt-2 gap-8'>
                       <Link><i class="ri-twitter-x-fill text-2xl hover:text-blue-500"></i></Link>

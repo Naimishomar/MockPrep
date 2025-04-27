@@ -4,12 +4,14 @@ import { Label } from "@/components/ui/label"
 import { Button } from './ui/button'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { toast } from "sonner";
+import { useUser } from "../context/UserContext.jsx";
 
 function Login() {
     const [Username, setUsername] = useState('')
     const [ContactNumber, setContactNumber] = useState('')
     const [Password, setPassword] = useState('')
     const navigate = useNavigate()
+    const { login } = useUser();
 
     const userLogin = async(e)=>{
         e.preventDefault()
@@ -26,10 +28,12 @@ function Login() {
                 })
             })
             const data = await response.json()
+            const user = data.userDetails
+            const username = user.name
             const token = data.token;
             if (data.success) {
                 console.log(token);
-                sessionStorage.setItem('token', token)
+                login(username)
                 toast.success(data.message);
                 navigate("/dashboard");
               }

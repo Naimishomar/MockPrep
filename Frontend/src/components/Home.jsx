@@ -12,13 +12,6 @@ function Home() {
   const [skill, setskill] = useState('Frontend Developer')
   const [showInterview, setShowInterview] = useState(true);
 
-
-  // const handleChange = (e) => {
-  //   const values = Array.from(e.target.selectedOptions, option => option.value);
-  //   setSelectedOptions(values);
-  //   console.log(values);
-  // };
-
   const handleSkill = (e) => {
     const values = Array.from(e.target.selectedOptions, option => option.value);
     setskill(values);
@@ -92,6 +85,7 @@ function Home() {
                       <option value="Android Developer">Android Developer</option>
                       <option value="Cyber Security">Cyber Security</option>
                       <option value="AR/VR Developer">AR/VR Developer</option>
+                      <option value="Data Scientist">Data Scientist</option>
                       <option value="Other">Other</option>
                     </select>
                   </div>

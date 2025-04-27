@@ -24,8 +24,7 @@ function Dashboard() {
         <i class="ri-bar-chart-box-ai-line text-5xl absolute rotate-12 text-blue-400 top-45 left-30 iconMove"></i>
         <i class="ri-presentation-fill text-5xl absolute rotate-12 text-pink-400 top-15 right-30 iconMove"></i>
         <i class="ri-chat-voice-ai-fill text-5xl absolute rotate-12 text-yellow-400 bottom-35 right-60 iconMove"></i>
-        <div className="text-7xl font-bold text-center pt-30 bg-gradient-to-bl from-[#5c5c5c] via-[#7e7e7e] to-[#0b0b0b] bg-clip-text text-transparent whitespace-nowrap">{heading}</div>
-
+        <div className="text-7xl font-bold text-center pt-30 bg-gradient-to-bl from-[#5c5c5c] via-[#7e7e7e] to-[#0b0b0b] bg-clip-text text-transparent whitespace-nowrap transition-all duration-200 hover:to-pink-400 hover:via-yellow-400 hover:from-blue-400 hover:scale-102 cursor-pointer">{heading}</div>
         <div className='flex justify-center'>
         <div className='w-200 flex flex-col overflow-hidden'>
             <div className='flex mt-8 whitespace-nowrap relative'>
@@ -143,7 +142,7 @@ function Dashboard() {
             <p className='mt-3 text-xl bg-gradient-to-br from-[#5c5c5c] via-[#7e7e7e] to-[#0b0b0b] bg-clip-text text-transparent'>Enhance your hiring process with our smart interview interface. <br /> Get real-time insights during virtual interviews, including:</p>
             <ul>
                 <li className='text-xl hover:text-white/80 blur-sm hover:blur-none mt-2'>🧠 Expert-Led Sessions:
-                Learn directly from experienced mentors who’ve been in your shoes — whether you're a beginner or leveling up.</li>
+                Learn directly from experienced mentors who’ve been in your shoes.</li>
                 <li className='text-xl hover:text-white/80 blur-sm hover:blur-none mt-2'>💬 Instant Doubt Resolution:Ask questions and get clear, actionable answers in real-time.</li>
                 <li className='text-xl hover:text-white/80 blur-sm hover:blur-none mt-2'>🎯 Personalized Guidance:Get advice tailored to your goals, skill level, and career path.</li>
                 <li className='text-xl hover:text-white/80 blur-sm hover:blur-none mt-2'>🗓️ Flexible Scheduling:Book sessions when you need them — no long wait times or rigid hours.</li>
@@ -154,6 +153,7 @@ function Dashboard() {
                 <img src="https://media.istockphoto.com/id/533241382/vector/mentoring-chart-with-keywords-and-icons-sketch.jpg?s=612x612&w=0&k=20&c=jrmrfgr8bVFD54ORCkgzt5GpldwHVxvQiwl8g1tOUGA=" alt="" className='py-10 rounded-r-full h-full object-fill invert-100' />
             </div>
     </div>
+    <hr className='border-white/10'/>
     </>
   )
 }

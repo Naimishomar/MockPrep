@@ -73,7 +73,7 @@ function Interview({ skill, experience, resume, duration }) {
           console.error("Confidence fetch error:", err);
         }
       }, "image/png");
-    }, 60000);
+    }, 20000);
   };
 
   const stopConfidenceTracking = () => {
@@ -136,6 +136,8 @@ function Interview({ skill, experience, resume, duration }) {
   const speakTextNormal = async (text) => {
     return new Promise((resolve) => {
       const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.3;
+      utterance.pitch = 2;
       utterance.onend = () => {
         audioRef.current = null;
         resolve();
@@ -144,6 +146,55 @@ function Interview({ skill, experience, resume, duration }) {
       speechSynthesis.speak(utterance);
     });
   };
+
+  // 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
+
+  // const speakTextNormal = async (text) => {
+  //   const apiKey = "  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";
+  //   const url = "https://api.openai.com/v1/audio/speech";
+  
+  //   console.log("Fetching TTS for:", text);
+  
+  //   const response = await fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       "Authorization": `Bearer ${apiKey}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       model: "tts-1",
+  //       input: text,
+  //       voice: "shimmer",
+  //     }),
+  //   });
+  
+  //   if (!response.ok) {
+  //     console.error("TTS Error:", await response.text());
+  //     return;
+  //   }
+  
+  //   const audioBlob = await response.blob();
+  //   if (audioBlob.size === 0) {
+  //     console.error("TTS returned empty blob.");
+  //     return;
+  //   }
+  
+  //   const audioUrl = URL.createObjectURL(audioBlob);
+  //   const audio = new Audio(audioUrl);
+  //   audioRef.current = audio;
+  
+  //   return new Promise((resolve) => {
+  //     audio.onended = () => {
+  //       audioRef.current = null;
+  //       resolve();
+  //     };
+  //     audio.play().catch((err) => {
+  //       console.error("Playback error:", err);
+  //       resolve(); // still resolve so the flow continues
+  //     });
+  //   });
+  // };
+  
 
   const callGeminiAPI = async (updatedHistory) => {
     const contents = updatedHistory.map((turn) => ({
@@ -174,12 +225,12 @@ function Interview({ skill, experience, resume, duration }) {
     const initialHistory = [
       {
         role: "user",
-        text: `You are a friendly and professional Interviewer (Name Yourself Randomly) Interviewing a student for ${skill} role. they have ${experience} years of experience. ask a mix of hard and simple problem one by one ask practical yet unique question. Keep the interview concise and on-topic. dont ask long question and try to give feedback and tell some intresthing thing regarding to user answer and related to asked question`,
+        text: `You are a friendly and professional Interviewer (Name Yourself Randomly) Interviewing a student for ${skill} role. they have ${experience} years of experience. ask a mix of hard and simple problem one by one ask practical yet unique question. Keep the interview concise and on-topic. dont ask long question`,
       },
     ];
     setConversationHistory(initialHistory);
 
-    appendLog(`Session ID: ${id}`);
+    // appendLog(`Session ID: ${id}`);
 
     const welcome = await callGeminiAPI(initialHistory.concat({
       role: "user",
@@ -284,8 +335,6 @@ function Interview({ skill, experience, resume, duration }) {
           <i className="ri-mic-off-fill text-2xl bg-white/15 p-4 rounded-full cursor-pointer" onClick={toggleMic}></i>
           <i className="ri-phone-fill text-2xl bg-red-500 p-4 rounded-full cursor-pointer" onClick={stopCamera}
           ></i>
-          <button onClick={startInterview} className="text-sm bg-green-500 text-white px-4 py-2 rounded-full"
-          disabled={sessionId !== null}>Start Interview</button>
         </div>
       </div>
 

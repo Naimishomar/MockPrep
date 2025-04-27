@@ -78,7 +78,7 @@ exports.userLogin = async(req,res)=>{
                 contactNumber: user.contactNumber,
             }
             return res.cookie('token', token,{httpOnly: true, sameSite:'strict', maxAge: 5*24*60*60*1000})
-            .json({message: `Logged in successfully, hello ${user.name}`, success: true, token});
+            .json({message: `Logged in successfully, hello ${user.name}`, success: true, token, userDetails});
         }
     } catch (error) {
         console.log(error);  
