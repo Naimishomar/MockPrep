@@ -75,6 +75,7 @@ function Signup() {
     }
 
 
+
   return (
     <div className='mt-20 w-full h-fit py-10 bg-black/80 flex justify-center items-center'>
         <i class="ri-bar-chart-box-ai-line text-5xl fixed rotate-12 text-blue-400 top-45 left-30 iconMove"></i>

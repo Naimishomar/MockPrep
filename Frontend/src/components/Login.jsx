@@ -5,6 +5,8 @@ import { Button } from './ui/button'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { toast } from "sonner";
 import { useUser } from "../context/UserContext.jsx";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../firebase/firebase.js";
 
 function Login() {
     const [Username, setUsername] = useState('')
@@ -43,6 +45,17 @@ function Login() {
         }
     }
 
+    const handleGoogleLogin = async () => {
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
+          console.log("User Info:", user);
+          navigate("/dashboard");
+        } catch (error) {
+          console.error("Google Sign-In Error", error);
+        }
+      };
+
   return (
     <div className='mt-20 w-full h-fit py-10 bg-black/80 flex justify-center items-center'>
         <i class="ri-bar-chart-box-ai-line text-5xl fixed rotate-12 text-blue-400 top-45 left-30 iconMove"></i>
@@ -68,7 +81,7 @@ function Login() {
             </div>
             <Button className="w-full text-center mt-3 px-7 py-5 bg-blue-400 hover:bg-blue-500 cursor-pointer" onClick={userLogin}>Login</Button>
             <p className='text-center my-3'>OR</p>
-            <Button className="w-full py-5 px-7 bg-white hover:bg-white/80 text-black cursor-pointer"><i class="ri-google-fill text-2xl"></i>Sign in in with Google</Button>
+            <Button className="w-full py-5 px-7 bg-white hover:bg-white/80 text-black cursor-pointer" onClick={handleGoogleLogin}><i class="ri-google-fill text-2xl"></i>Sign in in with Google</Button>
             <p className='mt-1'>Don't vave an account?<Link to='/signup' className='text-blue-400'>Sign up</Link></p>
         </div>
     </div>
