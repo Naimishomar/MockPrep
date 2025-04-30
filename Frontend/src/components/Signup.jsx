@@ -6,6 +6,8 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import {InputOTP,InputOTPGroup,InputOTPSlot} from "@/components/ui/input-otp"
 import {Dialog,DialogContent,DialogDescription,DialogHeader,DialogTitle,DialogTrigger,} from "@/components/ui/dialog"
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../firebase/firebase.js";
 
 function Signup() {
         const [Name, setName] = useState('')
@@ -74,7 +76,17 @@ function Signup() {
         }
     }
 
-
+        const handleGoogleLogin = async () => {
+            try {
+              const result = await signInWithPopup(auth, provider);
+              const user = result.user;
+              console.log("User Info:", user);
+              navigate("/dashboard");
+            } catch (error) {
+              console.error("Google Sign-In Error", error);
+            }
+          };
+    
 
   return (
     <div className='mt-20 w-full h-fit py-10 bg-black/80 flex justify-center items-center'>
@@ -150,7 +162,7 @@ function Signup() {
                 </DialogContent>
             </Dialog>
             <p className='text-center my-3'>OR</p>
-            <Button className="w-full py-5 px-7 bg-white hover:bg-white/80 text-black cursor-pointer"><i class="ri-google-fill text-2xl"></i>Signup in with Google</Button>
+            <Button className="w-full py-5 px-7 bg-white hover:bg-white/80 text-black cursor-pointer"><i class="ri-google-fill text-2xl" onClick={handleGoogleLogin}></i>Signup in with Google</Button>
             <p className='mt-1'>Have an account?<Link to='/login' className='text-blue-400'>Login</Link></p>
         </div>
     </div>
